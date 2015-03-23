@@ -1,0 +1,1 @@
+dists/quicklisp/software/cl-syntax-20140826-git/cl-syntax-annot.asd

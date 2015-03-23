@@ -1,0 +1,1 @@
+dists/quicklisp/software/quri-20150302-git/quri-test.asd
