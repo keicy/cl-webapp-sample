@@ -1,1 +1,0 @@
-dists/quicklisp/software/function-cache-20140914-git/function-cache.asd

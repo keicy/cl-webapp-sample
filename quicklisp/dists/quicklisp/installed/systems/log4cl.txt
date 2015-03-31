@@ -1,1 +1,0 @@
-dists/quicklisp/software/log4cl-20141217-git/log4cl.asd
