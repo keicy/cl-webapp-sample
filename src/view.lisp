@@ -35,7 +35,6 @@
   (setf (headers *response* :content-type) "application/json")
   (encode-json object))
 
-
 ;;
 ;; Execute package definition
 

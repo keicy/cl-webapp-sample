@@ -6,6 +6,9 @@
   (:import-from :datafly
                 :*connection*
                 :connect-cached)
+  (:import-from :integral
+                :*auto-migration-mode*
+                :connect-toplevel)
   (:export :connection-settings
            :db
            :with-connection))
@@ -20,3 +23,11 @@
 (defmacro with-connection (conn &body body)
   `(let ((*connection* ,conn))
      ,@body))
+
+;;;;kei 
+
+(setf integral:*auto-migration-mode* t)
+(connect-toplevel :mysql
+                    :database-name "mytest"
+                    :username "mysql"
+                    :password "mysql")

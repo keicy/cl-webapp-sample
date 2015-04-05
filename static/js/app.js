@@ -2,10 +2,6 @@
 var React = require('react');
 var Request = require('superagent');
 
-//var Scroll1 = require('react-infinity');
-//var Scroll2 = require('react-infinite');
-//var Scroll3 = require('react-infinite-scroll');
-
 var Grid = require('react-bootstrap').Grid;
 var Row = require('react-bootstrap').Row;
 var Col = require('react-bootstrap').Col;
@@ -13,13 +9,12 @@ var ListGroup = require('react-bootstrap').ListGroup;
 var ListGroupItem = require('react-bootstrap').ListGroupItem;
 
 
-
 var Comment = React.createClass({displayName: "Comment",
   render: function() {
     return (
       React.createElement(ListGroupItem, {className: "comment"}, 
         React.createElement("h2", {className: "commentAuthor"}, 
-          this.props.author
+          this.props.name
         ), 
           this.props.text
       )
@@ -32,7 +27,7 @@ var CommentList = React.createClass({displayName: "CommentList",
     var commentNodes = this.props.data.map(function (comment) {
       return (
          React.createElement(ListGroup, null, 
-           React.createElement(Comment, {author: comment.author, text: comment.text})
+           React.createElement(Comment, {name: comment.name, text: comment.text})
         )
       );
     });
@@ -47,20 +42,20 @@ var CommentList = React.createClass({displayName: "CommentList",
 var CommentForm = React.createClass({displayName: "CommentForm",
   handleSubmit: function(e) {
     e.preventDefault();
-    var author = React.findDOMNode(this.refs.author).value.trim();
+    var name = React.findDOMNode(this.refs.name).value.trim();
     var text = React.findDOMNode(this.refs.text).value.trim();
-    if (!text || !author) {
+    if (!text || !name) {
       return;
     }
-    this.props.onCommentSubmit({author: author, text: text});
-    React.findDOMNode(this.refs.author).value = '';
+    this.props.onCommentSubmit({name: name, text: text});
+    React.findDOMNode(this.refs.name).value = '';
     React.findDOMNode(this.refs.text).value = '';
     return;
   },
   render: function() {
     return (
       React.createElement("form", {className: "commentForm", onSubmit: this.handleSubmit}, 
-        React.createElement("input", {type: "text", placeholder: "Your name", ref: "author"}), 
+        React.createElement("input", {type: "text", placeholder: "Your name", ref: "name"}), 
         React.createElement("input", {type: "text", placeholder: "Say something...", ref: "text"}), 
         React.createElement("input", {type: "submit", value: "Post"})
       )
@@ -75,6 +70,7 @@ var CommentBox = React.createClass({displayName: "CommentBox",
   handleCommentSubmit: function(comment) {
     Request
         .post(this.props.url)
+        .type('form')
         .send(comment)
         .end(function(err, res) {});
   },
@@ -101,7 +97,7 @@ var commentBox = (
   React.createElement(Grid, null, 
     React.createElement(Row, {className: "show-grid"}, 
       React.createElement(Col, {smOffset: 2, sm: 8, smOffset: 2}, 
-        React.createElement(CommentBox, {url: "http://127.0.0.1:3000/comments", pollInterval: 5000})
+        React.createElement(CommentBox, {url: "/posts", pollInterval: 5000})
       )
     )
   )

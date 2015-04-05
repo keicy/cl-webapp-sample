@@ -20,13 +20,19 @@
 
                ;; for DB
                :datafly
+               :integral
                :sxql)
   :components ((:module "src"
                 :components
                 ((:file "main" :depends-on ("config" "view" "db"))
-                 (:file "web" :depends-on ("view"))
+                 (:file "web" :depends-on ("view" "query"))
                  (:file "view" :depends-on ("config"))
                  (:file "db" :depends-on ("config"))
-                 (:file "config"))))
+                 (:file "config")
+                 (:file "query" :depends-on ("query-modules"))
+                 (:module "query-modules"
+                  :pathname "query"
+                  :components
+                  ((:file "post"))))))
   :description ""
   :in-order-to ((test-op (load-op cl-webapp-sample-test))))

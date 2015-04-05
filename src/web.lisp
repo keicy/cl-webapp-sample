@@ -4,9 +4,12 @@
         :caveman2
         :cl-webapp-sample.config
         :cl-webapp-sample.view
-        :cl-webapp-sample.db
-        :datafly
-        :sxql)
+        :cl-webapp-sample.query
+;        :cl-webapp-sample.request
+;        :cl-webapp-sample.db
+;        :datafly
+;        :sxql
+        )
   (:export :*web*))
 (in-package :cl-webapp-sample.web)
 
@@ -26,6 +29,17 @@
 (defroute "/" ()
   (render #P"index.html"))
 
+@route GET "/posts"
+(defun api-get-posts ()
+  (render-json (get-posts)))
+
+@route POST "/posts"
+(defun api-post-posts ()
+  (let ((params (get-post-params)))
+    (let ((name (cdr (assoc "name" params :test #'string=)))
+          (text (cdr (assoc "text" params :test #'string=))))
+      (post-posts :name name :text text))))
+
 ;;
 ;; Error pages
 
@@ -33,3 +47,8 @@
   (declare (ignore app))
   (merge-pathnames #P"_errors/404.html"
                    *template-directory*))
+
+;;
+;; Helpers
+(defun get-post-params ()
+  (body-parameter *request*))
