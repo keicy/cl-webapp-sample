@@ -1,8 +1,6 @@
 (in-package :cl-user)
 (defpackage cl-webapp-sample.query.post
   (:use :cl)
-;  (:import-from :cl-webapp-sample.db
-;                :my-connect-db)
   (:import-from :integral
                 :select-dao
                 :save-dao

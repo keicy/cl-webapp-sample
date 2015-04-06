@@ -5,10 +5,6 @@
         :cl-webapp-sample.config
         :cl-webapp-sample.view
         :cl-webapp-sample.query
-;        :cl-webapp-sample.request
-;        :cl-webapp-sample.db
-;        :datafly
-;        :sxql
         )
   (:export :*web*))
 (in-package :cl-webapp-sample.web)
@@ -38,7 +34,9 @@
   (let ((params (get-post-params)))
     (let ((name (cdr (assoc "name" params :test #'string=)))
           (text (cdr (assoc "text" params :test #'string=))))
-      (post-posts :name name :text text))))
+      (post-posts :name name :text text)
+      () ;offset return value
+      )))
 
 ;;
 ;; Error pages
