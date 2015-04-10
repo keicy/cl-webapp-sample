@@ -34,5 +34,5 @@
                   :pathname "query"
                   :components
                   ((:file "post"))))))
-  :description ""
+  :description "Common Lisp WEB App sample. Just a simple BBS."
   :in-order-to ((test-op (load-op cl-webapp-sample-test))))
