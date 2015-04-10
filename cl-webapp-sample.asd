@@ -21,14 +21,14 @@
                ;; for DB
                :datafly
                :integral
-               :sxql)
+               :sxql
+               )
   :components ((:module "src"
                 :components
-                ((:file "main" :depends-on ("config" "view" "db"))
+                ((:file "config")
+                 (:file "main" :depends-on ("config"))
                  (:file "web" :depends-on ("view" "query"))
                  (:file "view" :depends-on ("config"))
-                 (:file "db" :depends-on ("config"))
-                 (:file "config")
                  (:file "query" :depends-on ("query-modules"))
                  (:module "query-modules"
                   :pathname "query"
