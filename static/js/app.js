@@ -97,7 +97,7 @@ var commentBox = (
   React.createElement(Grid, null, 
     React.createElement(Row, {className: "show-grid"}, 
       React.createElement(Col, {smOffset: 2, sm: 8, smOffset: 2}, 
-        React.createElement(CommentBox, {url: "/posts", pollInterval: 5000})
+        React.createElement(CommentBox, {url: "/posts", pollInterval: 2000})
       )
     )
   )
