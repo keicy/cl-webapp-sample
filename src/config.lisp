@@ -20,7 +20,10 @@
 (defparameter *template-directory* (merge-pathnames #P"templates/" *application-root*))
 
 (defconfig :common
-    `(:databases ((:maindb :mysql :database-name "mytest" :username "mysql" :passqord "mysql"))))
+    `(:databases ((:maindb :mysql 
+                   :database-name "mytest" 
+                   :username "mysql" 
+                   :passqord "mysql"))))
 
 (defconfig |development|
   '())
