@@ -70,7 +70,6 @@ var CommentBox = React.createClass({displayName: "CommentBox",
   handleCommentSubmit: function(comment) {
     Request
         .post(this.props.url)
-//        .type('form')
         .type('json')
         .accept('json')
         .send(comment)
@@ -99,7 +98,7 @@ var commentBox = (
   React.createElement(Grid, null, 
     React.createElement(Row, {className: "show-grid"}, 
       React.createElement(Col, {smOffset: 2, sm: 8, smOffset: 2}, 
-        React.createElement(CommentBox, {url: "/posts", pollInterval: 1000})
+        React.createElement(CommentBox, {url: "/posts", pollInterval: 1500})
       )
     )
   )
